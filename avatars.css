@@ -1,0 +1,6 @@
+.avatar-with-frame { position: relative !important; overflow: visible !important; isolation: isolate; }
+.avatar-with-frame > .avatar-frame { position:absolute !important; width:calc(100% + 4px) !important; height:calc(100% + 4px) !important; max-width:none !important; left:-2px !important; top:-2px !important; z-index:10; object-fit:contain; pointer-events:none; border-radius:0 !important; }
+
+.account-button__inner > .andropov-media > picture, .account-button__inner > .andropov-media > picture > img { border-radius:50% !important; overflow:hidden; }
+.account-button__inner > .andropov-media, .account-button__inner > .andropov-media > .andropov-media__thumbnail { border-radius:50% !important; }
+.subsite-avatar.avatar-with-frame > .avatar-frame { width:98px !important; height:98px !important; left:-4px !important; top:-4px !important; }
