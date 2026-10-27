@@ -45,6 +45,17 @@
    frame.className = 'avatar-frame';
    frame.src = './frames/' + assignments.get(key) + '.webp';
    frame.alt = '';
+   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+     frame.addEventListener('load', () => {
+       const canvas = document.createElement('canvas');
+       canvas.width = frame.naturalWidth; canvas.height = frame.naturalHeight;
+       const context = canvas.getContext('2d');
+       if (context && canvas.width && canvas.height) {
+         context.drawImage(frame, 0, 0);
+         frame.src = canvas.toDataURL('image/png');
+       }
+     }, { once: true });
+   }
    frame.setAttribute('aria-hidden', 'true');
    avatar.append(frame);
  });
@@ -54,11 +65,6 @@
    if (/^https?:\/\/(www\.)?vc\.ru/.test(href)) {
      link.href = /vc\.ru\/?(?:\?|$)/.test(href) || /\/popular|\/new$|\/my$/.test(href) ? './index.html' : /vc\.ru\/id1198627(?:[/?#]|$)/.test(href) || link.matches('.author__avatar, .author__name') ? './blog.html' : './post.html';
    }
- });
- document.querySelectorAll('.content-title, .content-header__title').forEach(title => {
-   if (location.pathname.endsWith('post.html')) return;
-   title.style.cursor = 'pointer';
-   title.addEventListener('click', () => location.href = './post.html');
  });
  const blogLink = document.querySelector('.account-button');
  if (blogLink) { blogLink.style.cursor = 'pointer'; blogLink.addEventListener('click', () => location.href = './blog.html'); }
