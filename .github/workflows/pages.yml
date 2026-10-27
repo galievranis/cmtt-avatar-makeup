@@ -23,6 +23,7 @@ jobs:
           python3 scripts/check-site.py
           node --check avatars.js
           node --check prototype.js
+          node --check avatar-menu.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
